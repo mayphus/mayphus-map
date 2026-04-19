@@ -1,4 +1,4 @@
-(ns roadsigil.map.share
+(ns mayphus-map.map.share
   (:require [reagent.core :as r]))
 
 (defonce share-state
@@ -40,7 +40,7 @@
 (defn download-png! [runtime-state]
   (-> (export-map-data-url runtime-state)
       (.then (fn [data-url]
-               (download-url! data-url "roadsigil-hangzhou.png")
+               (download-url! data-url "mayphus-map-hangzhou.png")
                (set-share-status! "PNG downloaded")))
       (.catch (fn []
                 (set-share-status! "Map export unavailable")))))

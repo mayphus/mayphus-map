@@ -1,7 +1,7 @@
-(ns roadsigil.app
+(ns mayphus-map.app
   (:require [reagent.core :as r]
             ["react-dom/client" :as react-dom-client]
-            [roadsigil.map.core :as map]))
+            [mayphus-map.map.core :as map]))
 
 (defn root []
   [map/app-root])

@@ -1,8 +1,8 @@
-# Roadsigil
+# mayphus-map
 
 Standalone browser map project extracted from `mayphus-sites`.
 
-It keeps the focused Hangzhou macro-road presentation, but now lives as its own small ClojureScript app under `~/making/roadsigil`.
+It keeps the focused Hangzhou macro-road presentation, but now lives as its own small ClojureScript app under `~/making/mayphus-map`.
 
 ## Commands
 
@@ -20,7 +20,7 @@ bunx wrangler deploy --config wrangler.jsonc --env production
 `wrangler.jsonc` is configured to publish the built `dist/` folder as a static-assets Worker:
 
 - production custom domain: `map.mayphus.org`
-- preview environment: `roadsigil-preview.workers.dev`
+- preview environment: `mayphus-map-preview.workers.dev`
 
 GitHub Actions deploys preview branches (`codex/**`, `feature/**`, `feat/**`) and production on `main`.
 Set these repository secrets before enabling the workflow:

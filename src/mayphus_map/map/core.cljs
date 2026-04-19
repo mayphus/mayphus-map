@@ -1,9 +1,9 @@
-(ns roadsigil.map.core
+(ns mayphus-map.map.core
   (:require ["maplibre-gl" :as maplibre]
             [reagent.core :as r]
-            [roadsigil.map.base-layout :as base-layout]
-            [roadsigil.map.main-road-layout :as main-road-layout]
-            [roadsigil.map.share :as share]))
+            [mayphus-map.map.base-layout :as base-layout]
+            [mayphus-map.map.main-road-layout :as main-road-layout]
+            [mayphus-map.map.share :as share]))
 
 (defonce runtime-state
   (r/atom {:map nil}))
@@ -40,7 +40,7 @@
 (defn hero-panel []
   [:section {:class "hero-panel"}
    [:p {:class "eyebrow"} "Macro Roads"]
-   [:h1 "Roadsigil"]
+   [:h1 "mayphus-map"]
    [:p {:class "hero-copy"}
     "A stripped-down Hangzhou road map tuned for orientation, not GIS ceremony. "
     "Pan, zoom, keep the URL hash, and export a clean PNG when you want a snapshot."]])
@@ -48,7 +48,7 @@
 (defn map-panel []
   (let [container-el (atom nil)]
     (r/create-class
-     {:display-name "roadsigil-map"
+     {:display-name "mayphus-map"
       :component-did-mount
       (fn []
         (when-let [container @container-el]

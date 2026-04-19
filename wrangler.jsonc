@@ -1,5 +1,5 @@
 {
-  "name": "roadsigil",
+  "name": "mayphus-map",
   "compatibility_date": "2026-04-19",
   "assets": {
     "directory": "./dist",
@@ -18,12 +18,12 @@
   ],
   "env": {
     "preview": {
-      "name": "roadsigil-preview",
+      "name": "mayphus-map-preview",
       "routes": [],
       "workers_dev": true
     },
     "production": {
-      "name": "roadsigil"
+      "name": "mayphus-map"
     }
   }
 }

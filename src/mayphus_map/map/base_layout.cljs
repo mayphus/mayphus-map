@@ -1,4 +1,4 @@
-(ns roadsigil.map.base-layout)
+(ns mayphus-map.map.base-layout)
 
 (defn style-layers [^js map-instance]
   (js->clj (.-layers (.getStyle map-instance)) :keywordize-keys true))

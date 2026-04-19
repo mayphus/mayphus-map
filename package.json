@@ -1,5 +1,5 @@
 {
-  "name": "@mayphus/roadsigil",
+  "name": "@mayphus/mayphus-map",
   "private": true,
   "packageManager": "bun@1.3.6",
   "type": "module",
