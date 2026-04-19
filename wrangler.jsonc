@@ -1,0 +1,29 @@
+{
+  "name": "roadsigil",
+  "compatibility_date": "2026-04-19",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application",
+    "html_handling": "drop-trailing-slash"
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "routes": [
+    {
+      "pattern": "map.mayphus.org",
+      "custom_domain": true
+    }
+  ],
+  "env": {
+    "preview": {
+      "name": "roadsigil-preview",
+      "routes": [],
+      "workers_dev": true
+    },
+    "production": {
+      "name": "roadsigil"
+    }
+  }
+}
