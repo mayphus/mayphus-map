@@ -45,6 +45,7 @@ jobs:
       - name: Deploy preview
         if: github.event_name == 'push' && (startsWith(github.ref, 'refs/heads/codex/') || startsWith(github.ref, 'refs/heads/feature/') || startsWith(github.ref, 'refs/heads/feat/'))
         env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           SKIP_WRANGLER_CUSTOM_BUILD: "1"
         uses: cloudflare/wrangler-action@v3.14.1
         with:
@@ -56,6 +57,7 @@ jobs:
       - name: Deploy production
         if: github.ref == 'refs/heads/main'
         env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           SKIP_WRANGLER_CUSTOM_BUILD: "1"
         uses: cloudflare/wrangler-action@v3.14.1
         with:
