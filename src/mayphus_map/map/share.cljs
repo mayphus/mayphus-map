@@ -47,33 +47,10 @@
 
 (defn share-panel [runtime-state]
   (let [{:keys [status]} @share-state]
-    [:div {:style {:position "fixed"
-                   :right "18px"
-                   :bottom "18px"
-                   :z-index 20
-                   :display "grid"
-                   :gap "8px"
-                   :justify-items "end"}}
+    [:div {:class "share-panel"}
      [:button {:on-click #(download-png! runtime-state)
                :title "Download PNG"
-               :style {:border "1px solid rgba(71, 85, 105, 0.18)"
-                       :height "40px"
-                       :padding "0 14px"
-                       :border-radius "999px"
-                       :background "rgba(251, 253, 255, 0.92)"
-                       :backdrop-filter "blur(14px)"
-                       :box-shadow "0 14px 32px rgba(15, 23, 42, 0.12)"
-                       :color "#17304a"
-                       :font-size "0.8rem"
-                       :font-weight 700
-                       :letter-spacing "0.08em"
-                       :text-transform "uppercase"
-                       :cursor "pointer"}}
+               :class "share-button"}
       "Export PNG"]
-     [:p {:style {:margin 0
-                  :min-height "14px"
-                  :max-width "160px"
-                  :text-align "right"
-                  :font-size "0.75rem"
-                  :color "#52606d"}}
+     [:p {:class "share-status"}
       (or status "")]]))
