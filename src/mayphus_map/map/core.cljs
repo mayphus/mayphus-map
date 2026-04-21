@@ -62,8 +62,7 @@
    :style map-style-url
    :center hangzhou-center
    :zoom 11
-   :hash true
-   :preserveDrawingBuffer true})
+   :hash true})
 
 (defn remove-runtime! []
   (when-let [map-instance (:map @runtime-state)]
