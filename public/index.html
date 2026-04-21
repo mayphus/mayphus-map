@@ -68,6 +68,16 @@
         background: var(--panel-bg);
         backdrop-filter: blur(20px);
         box-shadow: var(--panel-shadow);
+        transition:
+          width 180ms ease,
+          border-radius 180ms ease,
+          box-shadow 180ms ease,
+          background 180ms ease;
+      }
+
+      .hero-panel.is-collapsed {
+        width: min(320px, calc(100vw - 36px));
+        padding-bottom: 14px;
       }
 
       .hero-topline {
@@ -77,6 +87,12 @@
         gap: 12px;
       }
 
+      .hero-topline-copy {
+        display: grid;
+        gap: 8px;
+        min-width: 0;
+      }
+
       .eyebrow {
         margin: 0;
         font-size: 0.75rem;
@@ -84,6 +100,58 @@
         letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--accent);
+      }
+
+      .sidebar-toggle {
+        border: 1px solid rgba(37, 58, 72, 0.14);
+        min-width: 74px;
+        height: 36px;
+        padding: 0 12px;
+        border-radius: 999px;
+        background: rgba(255, 252, 247, 0.78);
+        color: var(--accent-strong);
+        font-family: "Avenir Next", "Helvetica Neue", sans-serif;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      .hero-collapsed-summary {
+        display: none;
+      }
+
+      .hero-panel-body {
+        display: block;
+      }
+
+      .hero-panel.is-collapsed .hero-collapsed-summary {
+        display: grid;
+        gap: 4px;
+        margin-top: 12px;
+      }
+
+      .hero-panel.is-collapsed .hero-panel-body {
+        display: none;
+      }
+
+      .collapsed-map-name,
+      .collapsed-lens {
+        margin: 0;
+      }
+
+      .collapsed-map-name {
+        font-size: 1.08rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      .collapsed-lens {
+        color: var(--muted);
+        font-family: "Avenir Next", "Helvetica Neue", sans-serif;
+        font-size: 0.84rem;
+        line-height: 1.35;
       }
 
       h1 {
@@ -275,6 +343,12 @@
           border-radius: 22px;
         }
 
+        .hero-panel.is-collapsed {
+          width: min(292px, calc(100vw - 24px));
+          padding: 12px;
+          border-radius: 18px;
+        }
+
         .hero-copy {
           max-width: none;
         }
@@ -285,6 +359,12 @@
 
         .preset-button {
           padding: 12px 13px;
+        }
+
+        .sidebar-toggle {
+          min-width: 68px;
+          height: 34px;
+          padding: 0 11px;
         }
 
         .share-panel {

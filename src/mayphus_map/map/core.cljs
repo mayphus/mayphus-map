@@ -8,8 +8,14 @@
 (defonce runtime-state
   (r/atom {:map nil}))
 
+(defn mobile-viewport? []
+  (boolean (some-> js/window
+                   (.matchMedia "(max-width: 640px)")
+                   .-matches)))
+
 (defonce ui-state
-  (r/atom {:active-preset :macro-roads}))
+  (r/atom {:active-preset :macro-roads
+           :sidebar-collapsed? (mobile-viewport?)}))
 
 (def hangzhou-center [120.1551 30.2741])
 
@@ -99,6 +105,9 @@
   (when-let [map-instance (:map @runtime-state)]
     (apply-preset! map-instance preset)))
 
+(defn toggle-sidebar! [& _]
+  (swap! ui-state update :sidebar-collapsed? not))
+
 (defn preset-button [preset active?]
   [:button {:type "button"
             :class (str "preset-button" (when active? " is-active"))
@@ -108,24 +117,38 @@
    [:span {:class "preset-description"} (:description preset)]])
 
 (defn hero-panel []
-  (let [{:keys [id eyebrow title description chip]} (current-preset)]
-    [:section {:class "hero-panel"}
+  (let [collapsed? (:sidebar-collapsed? @ui-state)
+        {:keys [id eyebrow title description chip]} (current-preset)]
+    [:section {:class (str "hero-panel" (when collapsed? " is-collapsed"))}
      [:div {:class "hero-topline"}
-      [:p {:class "eyebrow"} eyebrow]
-      [:span {:class "hero-chip"} chip]]
-     [:h1 "mayphus-map"]
-     [:p {:class "hero-copy"}
-      "An editorial road atlas for Hangzhou. Pick a reading mode, jump to a stored viewpoint, and export the scene once it says something precise."]
-     [:div {:class "story-card"}
-      [:p {:class "story-kicker"} "Current lens"]
-      [:h2 {:class "story-title"} title]
-      [:p {:class "story-copy"} description]]
-     [:div {:class "preset-list"}
-      (for [preset presets]
-        ^{:key (:id preset)}
-        [preset-button preset (= id (:id preset))])]
-     [:p {:class "panel-note"}
-      "URL hash stays live while you pan. Use the presets to reset the narrative instead of manually hunting for a view."]]))
+      [:div {:class "hero-topline-copy"}
+       [:p {:class "eyebrow"} eyebrow]
+       [:span {:class "hero-chip"} chip]]
+      [:button {:type "button"
+                :class "sidebar-toggle"
+                :aria-controls "hero-panel-body"
+                :aria-expanded (not collapsed?)
+                :aria-label (if collapsed? "Expand sidebar" "Collapse sidebar")
+                :on-click toggle-sidebar!}
+       (if collapsed? "Open" "Fold")]]
+     [:div {:class "hero-collapsed-summary"}
+      [:p {:class "collapsed-map-name"} "mayphus-map"]
+      [:p {:class "collapsed-lens"} title]]
+     [:div {:id "hero-panel-body"
+            :class "hero-panel-body"}
+      [:h1 "mayphus-map"]
+      [:p {:class "hero-copy"}
+       "An editorial road atlas for Hangzhou. Pick a reading mode, jump to a stored viewpoint, and export the scene once it says something precise."]
+      [:div {:class "story-card"}
+       [:p {:class "story-kicker"} "Current lens"]
+       [:h2 {:class "story-title"} title]
+       [:p {:class "story-copy"} description]]
+      [:div {:class "preset-list"}
+       (for [preset presets]
+         ^{:key (:id preset)}
+         [preset-button preset (= id (:id preset))])]
+      [:p {:class "panel-note"}
+       "URL hash stays live while you pan. Use the presets to reset the narrative instead of manually hunting for a view."]]]))
 
 (defn map-panel []
   (let [container-el (atom nil)]
