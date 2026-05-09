@@ -1,6 +1,6 @@
 # mayphus-map
 
-Standalone browser map project extracted from `mayphus-sites`.
+Standalone browser map project extracted from `mayphus.org`.
 
 It keeps the focused Hangzhou macro-road presentation, but now lives as its own small ClojureScript app under `~/making/mayphus-map`.
 
